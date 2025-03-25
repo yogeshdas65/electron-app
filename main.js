@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow } = require("electron");
+const path = require("path");
 
 let mainWindow;
 
@@ -7,14 +8,19 @@ app.whenReady().then(() => {
     width: 1000,
     height: 700,
     webPreferences: {
-      preload: `${__dirname}/preload.js`, 
-      nodeIntegration: true
-    }
+       preload: path.join(__dirname, "preload.js"),
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
   });
 
-  mainWindow.loadFile('index.html');
+  mainWindow.loadFile(path.join(__dirname, "index.html"));
 
-  app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit();
+  mainWindow.webContents.openDevTools();
+
+  mainWindow.webContents.session.clearCache();
+
+  app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") app.quit();
   });
 });

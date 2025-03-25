@@ -7,19 +7,24 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
+            margin: 0;
+            padding: 0;
         }
 
-        h1 {
-            color: #3498db;
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #f39c12;
         }
     </style>
 </head>
 
 <body>
-    <h1>Hello, Electron! 🚀</h1>
-    <button onclick="sendMessage()">Send Message</button>
-
+    <div id="app"></div>
     <script src="./renderer.js"></script>
 </body>
 
